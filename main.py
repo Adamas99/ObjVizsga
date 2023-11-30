@@ -43,7 +43,7 @@ def main():
         elif valasztas == "2":
             # Foglalás lemondása
             szobaszam = int(input("Adja meg a szobaszámot: "))
-            nap = input("Adja meg a napot (YYYY-MM-DD formátumban): ")
+            nap = input("Adja meg a napot (ÉÉÉÉ-HH-NN formátumban): ")
             try:
                 nap = datetime.strptime(nap, "%Y-%m-%d").date()
             except ValueError:
