@@ -36,6 +36,7 @@ def main():
             except ValueError:
                 print("Hibás dátum formátum. Kérjük, használja az ÉÉÉÉ-HH-NN formátumot.")
                 continue
+
             for szoba in szalloda.szobak:
                 if szoba.szobaszam == szobaszam:
                     if valasztas == "1":

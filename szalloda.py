@@ -13,13 +13,13 @@ class Szalloda:
 
     def foglalas(self, szoba, nap):
         if nap < datetime.today().date():
-            return "Rossz dátum. A foglalás dátuma nem lehet korábbi, mint a mai nap."
+            return "Rossz dátum. A foglalás dátuma nem lehet korabbi, mint a mai nap."
         for foglalas in self.foglalasok:
             if foglalas.szoba == szoba and foglalas.nap == nap:
-                return "A szoba már foglalt ebben az időpontban."
+                return "A szoba már foglalt ebben az időpontban, válasszon másik időpontot."
         foglalas = Foglalas(szoba, nap)
         self.foglalasok.append(foglalas)
-        return "A foglalás sikeres."
+        return "A foglalás sikeres. Köszönjük!"
 
     def lemondas(self, foglalas):
         if foglalas in self.foglalasok:
