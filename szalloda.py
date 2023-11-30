@@ -1,4 +1,4 @@
-
+# szalloda.py
 from datetime import datetime
 from foglalas import Foglalas
 
@@ -14,6 +14,9 @@ class Szalloda:
     def foglalas(self, szoba, nap):
         if nap < datetime.today().date():
             return "Rossz dátum. A foglalás dátuma nem lehet korábbi, mint a mai nap."
+        for foglalas in self.foglalasok:
+            if foglalas.szoba == szoba and foglalas.nap == nap:
+                return "A szoba már foglalt ebben az időpontban."
         foglalas = Foglalas(szoba, nap)
         self.foglalasok.append(foglalas)
         return "A foglalás sikeres."
@@ -24,7 +27,6 @@ class Szalloda:
             return "A foglalás lemondása sikeres."
         else:
             return "A foglalás nem található."
-
 
     def listazas(self):
         for foglalas in self.foglalasok:
