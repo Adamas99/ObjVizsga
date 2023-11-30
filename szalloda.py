@@ -1,4 +1,4 @@
-# szalloda.py
+
 from datetime import datetime
 from foglalas import Foglalas
 

@@ -18,14 +18,18 @@ def main():
 
     while True:
         print("\n--- Hotel Szobafoglaló Rendszer ---")
+
         print("1. Foglalás")
         print("2. Lemondás")
         print("3. Listázás")
         print("4. Kilépés")
         valasztas = input("Válasszon a fentiekből: ")
 
-        if valasztas == "1":
-            szobaszam = int(input("Adja meg a szobaszámot (1-3 ig választhat): "))
+        if valasztas == "1" or valasztas == "2":
+            szobaszam = int(input("Adja meg a szobaszamot (1-3 ig választhat): "))
+            if szobaszam not in [1, 2, 3]:
+                print("Nem létezik ez a szoba.")
+                continue
             nap = input("Adja meg a napot (ÉÉÉÉ-HH-NN formátumban): ")
             try:
                 nap = datetime.strptime(nap, "%Y-%m-%d").date()
@@ -34,20 +38,10 @@ def main():
                 continue
             for szoba in szalloda.szobak:
                 if szoba.szobaszam == szobaszam:
-                    eredmeny = szalloda.foglalas(szoba, nap)
-                    print(eredmeny)
-        elif valasztas == "2":
-            szobaszam = int(input("Adja meg a szobaszámot: "))
-            nap = input("Adja meg a napot (YYYY-MM-DD formátumban): ")
-            try:
-                nap = datetime.strptime(nap, "%Y-%m-%d").date()
-            except ValueError:
-                print("Hibás dátum formátum. Kérjük, használja az ÉÉÉÉ-HH-NN formátumot.")
-                continue
-
-            for foglalas in szalloda.foglalasok:
-                if foglalas.szoba.szobaszam == szobaszam and foglalas.nap == nap:
-                    eredmeny = szalloda.lemondas(foglalas)
+                    if valasztas == "1":
+                        eredmeny = szalloda.foglalas(szoba, nap)
+                    else:
+                        eredmeny = szalloda.lemondas(szoba, nap)
                     print(eredmeny)
         elif valasztas == "3":
             szalloda.listazas()
